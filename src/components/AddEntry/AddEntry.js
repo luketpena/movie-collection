@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import MovieCard from '../MovieCard/MovieCard';
 
 class AddEntry extends Component {
 
@@ -33,6 +34,11 @@ class AddEntry extends Component {
           </label>
           <button>Submit</button>
         </form>
+        <h2>Movies</h2>
+        <div className="cardBox">
+          <MovieCard />
+          <MovieCard />
+        </div>
       </div>
     )
   }
