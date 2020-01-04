@@ -25,11 +25,23 @@ class ManageGenre extends Component {
     })
   }
 
+  handleSubmit = (event)=> {
+    event.preventDefault();
+    console.log('NEW GENRE:',this.state.genre);
+    
+    if (this.state.genre.length>0) {
+      this.props.dispatch({type: 'ADD_GENRE', payload: this.state.genre});
+      this.setState({genre: ''});
+    } else {
+      alert('Please enter a genre name.');
+    }
+  }
+
   render() {
     return (
       <div>
         <h2>Add Genre</h2>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <input type="text" placeholder="Genre Name" value={this.state.genre} onChange={(event)=>this.handleChange(event,'genre')}/>
           <button>Submit</button>
         </form>

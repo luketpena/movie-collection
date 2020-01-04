@@ -16,8 +16,30 @@ router.get('/',(req,res)=>{
   pool.query(queryString).then(result=>{
     res.send(result.rows);
   }).catch(error=>{
-    console.log('Error getting events from the database:',error);
+    console.log('Error getting genres from the database:',error);
     res.sendStatus(400);
+  })
+})
+
+router.post('/',(req,res)=>{
+  const genre = req.body.newGenre;
+  console.log('Incoming genre:', genre);
+  let queryString = `INSERT INTO genre ("name") VALUES ($1);`
+  pool.query(queryString, [genre]).then(result=>{
+    res.sendStatus(200);
+  }).catch(error=>{
+    console.log('Error posting new genre to database:',error);
+    res.sendStatus(400);
+  })
+})
+
+router.delete('/:id',(req,res)=>{
+  let queryString = `DELETE FROM genre WHERE id=$1;`;
+  pool.query(queryString,[req.params.id]).then(result=>{
+    res.sendStatus(200);
+  }).catch(error=>{
+    console.log('Error deleting genre from database:',error);
+    res.sendStatus(400);    
   })
 })
 

@@ -14,11 +14,17 @@ import axios from 'axios';
 //-----< SAGAS >-----\\
 function * rootSaga () {
   yield takeEvery ('GET_GENRE', getGenre); 
+  yield takeEvery ('ADD_GENRE', addGenre);
 }
 
 function * getGenre (action) {
   const response = yield axios.get('/genre');
   yield put({type: 'SET_GENRE', payload: response.data});
+}
+
+function * addGenre (action) {
+  yield axios.post('/genre',{newGenre: action.payload});
+  yield put({type: 'GET_GENRE'});
 }
 
 
