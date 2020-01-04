@@ -18,6 +18,21 @@ router.get('/',(req,res)=>{
     console.log('Error getting movies from the database:',error);
     res.sendStatus(400);
   })
+});
+
+router.post('/',(req,res)=>{
+  let {name,genre,date,img_url,runtime} = req.body;
+  genreNum = Number(genre);
+  runtimeNum = Number(runtime)
+  console.log('Incoming',genreNum);
+  
+  let queryString = `INSERT INTO movie ("name","genre_id","date","img_url","runtime") VALUES ($1,$2,$3,$4,$5);`;
+  pool.query(queryString, [name,genreNum,date,img_url,runtimeNum]).then(result=>{
+    res.sendStatus(200);
+  }).catch(error=>{
+    console.log('Error posting new movie to database:',error);
+    res.sendStatus(400);
+  })
 })
 
 // EXPORT THE ROUTES

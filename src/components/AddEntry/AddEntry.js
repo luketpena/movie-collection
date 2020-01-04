@@ -8,6 +8,7 @@ class AddEntry extends Component {
     name: '',
     genre: 'Genre',
     date: '',
+    img_url: '',
     runtime: '',
   }
 
@@ -15,6 +16,19 @@ class AddEntry extends Component {
     this.setState({
       [prop]: event.target.value
     })
+  }
+
+  handleSubmit = (event)=> {
+    event.preventDefault();
+    console.log('SUBMIT',this.state);
+    this.props.dispatch({type: 'ADD_MOVIE', payload: this.state})
+    // this.setState({
+    //   name: '',
+    //   genre: 'Genre',
+    //   date: '',
+    //   img_url: '',
+    //   runtime: '',
+    // })
   }
 
   populateGenre = ()=> {
@@ -33,15 +47,17 @@ class AddEntry extends Component {
     return (
       <div>
         <h2>Add Movie</h2>
-        <form>
+        <form onSubmit={this.handleSubmit}>
+          {JSON.stringify(this.state)}
           <input type='text' placeholder='Name' value={this.state.name} onChange={(event)=>this.handleChange(event,'name')}/>
+          <input type='text' placeholder='Image URL' value={this.state.image_url} onChange={(event)=>this.handleChange(event,'img_url')}/>
           <select value={this.state.genre} onChange={(event)=>this.handleChange(event,'genre')}>
             <option disabled>Genre</option>
             {this.populateGenre()}
           </select>
           <label>
             Release Date:
-            <input type='date' />
+            <input type='date' value={this.state.date} onChange={(event)=>this.handleChange(event,'date')}/>
           </label>
           <label>
             <input type='number' placeholder='Duration (in minutes)' />

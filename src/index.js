@@ -17,6 +17,7 @@ function * rootSaga () {
   yield takeEvery ('ADD_GENRE', addGenre);
   yield takeEvery ('DELETE_GENRE', deleteGenre);
   yield takeEvery ('GET_MOVIE', getMovie);
+  yield takeEvery ('ADD_MOVIE', addMovie);
 }
 
 function * getGenre (action) {
@@ -39,6 +40,10 @@ function * getMovie (action) {
   yield put({type: 'SET_MOVIE', payload: response.data});
 }
 
+function * addMovie (action) {
+  yield axios.post('/movie',action.payload);
+  yield put({type: 'GET_MOVIE'});
+}
 
 //-----< REDUCERS >-----\\
 const genreReducer = (state=[],action)=> {
