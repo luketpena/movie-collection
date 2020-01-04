@@ -20,15 +20,21 @@ class AddEntry extends Component {
 
   handleSubmit = (event)=> {
     event.preventDefault();
-    console.log('SUBMIT',this.state);
-    this.props.dispatch({type: 'ADD_MOVIE', payload: this.state})
-    // this.setState({
-    //   name: '',
-    //   genre: 'Genre',
-    //   date: '',
-    //   img_url: '',
-    //   runtime: '',
-    // })
+    const {name,genre,date,img_url,runtime} = this.state;
+    console.log(name,genre,date,img_url,runtime);
+    
+    if (name!=='' && genre!=='Genre' && date!=='' && img_url!=='' && runtime!=='') {
+      this.props.dispatch({type: 'ADD_MOVIE', payload: this.state})
+      this.setState({
+        name: '',
+        genre: 'Genre',
+        date: '',
+        img_url: '',
+        runtime: '',
+      })
+    } else {
+      alert('Please fill out the movie information then try again.');
+    }
   }
 
   populateGenre = ()=> {
@@ -60,7 +66,7 @@ class AddEntry extends Component {
             <input type='date' value={this.state.date} onChange={(event)=>this.handleChange(event,'date')}/>
           </label>
           <label>
-            <input type='number' placeholder='Duration (in minutes)' />
+            <input type='number' placeholder='Duration (in minutes)' value={this.state.runtime} onChange={(event)=>this.handleChange(event,'runtime')}/>
           </label>
           <button>Submit</button>
         </form>
