@@ -7,6 +7,16 @@ h1 {
   margin: 0;
 }
 
+h3 {
+  transform:translateX(100%);
+  animation: title-wrap 5s linear 0s infinite normal;
+}
+
+@keyframes title-wrap {
+  from {transform: translateX(100%);}
+  to {transform: translateX(-250%);}
+}
+
 .cardBox {
   display: flex;
   flex-wrap: wrap;
@@ -20,6 +30,7 @@ h1 {
   text-align: center;
   border-radius: 12px;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .card img {

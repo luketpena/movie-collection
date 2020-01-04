@@ -16,6 +16,7 @@ function * rootSaga () {
   yield takeEvery ('GET_GENRE', getGenre); 
   yield takeEvery ('ADD_GENRE', addGenre);
   yield takeEvery ('DELETE_GENRE', deleteGenre);
+  yield takeEvery ('GET_MOVIE', getMovie);
 }
 
 function * getGenre (action) {
@@ -33,6 +34,11 @@ function * deleteGenre (action) {
   yield put({type: 'GET_GENRE'});
 }
 
+function * getMovie (action) {
+  const response = yield axios.get('/movie');
+  yield put({type: 'SET_MOVIE', payload: response.data});
+}
+
 
 //-----< REDUCERS >-----\\
 const genreReducer = (state=[],action)=> {
@@ -42,11 +48,19 @@ const genreReducer = (state=[],action)=> {
   }
 }
 
+const movieReducer = (state=[],action)=> {
+  switch(action.type) {
+    case 'SET_MOVIE': return action.payload;
+    default: return state;
+  }
+}
+
 //-----< CREATING THE STORE >-----\\
 const sagaMiddlware = createSagaMiddleware();
 const storeInstance = createStore (
   combineReducers({
-    genreReducer
+    genreReducer,
+    movieReducer,
   }),
   applyMiddleware(sagaMiddlware, logger)
 )

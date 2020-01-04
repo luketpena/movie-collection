@@ -23,11 +23,16 @@ class AddEntry extends Component {
     })
   }
 
+  populateCardBox = ()=> {
+    return this.props.movieList.map( (item,i)=>{
+      return <MovieCard movie={item} key={i}/>
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>Add Movie</h2>
-        {JSON.stringify(this.state)}
         <form>
           <input type='text' placeholder='Name' value={this.state.name} onChange={(event)=>this.handleChange(event,'name')}/>
           <select value={this.state.genre} onChange={(event)=>this.handleChange(event,'genre')}>
@@ -45,8 +50,7 @@ class AddEntry extends Component {
         </form>
         <h2>Movies</h2>
         <div className="cardBox">
-          <MovieCard />
-          <MovieCard />
+          {this.populateCardBox()}
         </div>
       </div>
     )
@@ -54,5 +58,6 @@ class AddEntry extends Component {
 }
 
 export default connect(reduxState=>({
-  genreList: reduxState.genreReducer
+  genreList: reduxState.genreReducer,
+  movieList: reduxState.movieReducer
 }))(AddEntry);

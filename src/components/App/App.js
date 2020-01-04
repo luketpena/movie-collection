@@ -13,7 +13,8 @@ import ManageGenre from '../ManageGenre/ManageGenre';
 class App extends Component {
 
   componentDidMount() {
-    this.props.dispatch({type: 'GET_GENRE'})
+    this.props.dispatch({type: 'GET_GENRE'});
+    this.props.dispatch({type: 'GET_MOVIE'});
   }
 
   render() {
