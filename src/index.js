@@ -15,6 +15,7 @@ import axios from 'axios';
 function * rootSaga () {
   yield takeEvery ('GET_GENRE', getGenre); 
   yield takeEvery ('ADD_GENRE', addGenre);
+  yield takeEvery ('DELETE_GENRE', deleteGenre);
 }
 
 function * getGenre (action) {
@@ -24,6 +25,11 @@ function * getGenre (action) {
 
 function * addGenre (action) {
   yield axios.post('/genre',{newGenre: action.payload});
+  yield put({type: 'GET_GENRE'});
+}
+
+function * deleteGenre (action) {
+  yield axios.delete('/genre/'+action.payload);
   yield put({type: 'GET_GENRE'});
 }
 
