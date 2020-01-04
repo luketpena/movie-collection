@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import MovieCard from '../MovieCard/MovieCard';
+import {connect} from 'react-redux';
 
 class AddEntry extends Component {
 
   state = {
     name: '',
-    genre: '',
+    genre: 'Genre',
     date: '',
     runtime: '',
   }
@@ -16,14 +17,22 @@ class AddEntry extends Component {
     })
   }
 
+  populateGenre = ()=> {
+    return this.props.genreList.map( (item,i)=>{
+      return <option key={i} value={item.id}>{item.name}</option>
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>Add Movie</h2>
+        {JSON.stringify(this.state)}
         <form>
           <input type='text' placeholder='Name' value={this.state.name} onChange={(event)=>this.handleChange(event,'name')}/>
-          <select value='Genre'>
+          <select value={this.state.genre} onChange={(event)=>this.handleChange(event,'genre')}>
             <option disabled>Genre</option>
+            {this.populateGenre()}
           </select>
           <label>
             Release Date:
@@ -44,4 +53,6 @@ class AddEntry extends Component {
   }
 }
 
-export default AddEntry;
+export default connect(reduxState=>({
+  genreList: reduxState.genreReducer
+}))(AddEntry);

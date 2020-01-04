@@ -9,7 +9,6 @@ import { Switch } from 'react-router';
 
 import AddEntry from '../AddEntry/AddEntry';
 import ManageGenre from '../ManageGenre/ManageGenre';
-import { render } from '@testing-library/react';
 
 class App extends Component {
 
