@@ -18,6 +18,7 @@ function * rootSaga () {
   yield takeEvery ('DELETE_GENRE', deleteGenre);
   yield takeEvery ('GET_MOVIE', getMovie);
   yield takeEvery ('ADD_MOVIE', addMovie);
+  yield takeEvery ('DELETE_MOVIE', deleteMovie);
 }
 
 function * getGenre (action) {
@@ -42,6 +43,11 @@ function * getMovie (action) {
 
 function * addMovie (action) {
   yield axios.post('/movie',action.payload);
+  yield put({type: 'GET_MOVIE'});
+}
+
+function * deleteMovie (action) {
+  yield axios.delete('/movie/'+action.payload);
   yield put({type: 'GET_MOVIE'});
 }
 
