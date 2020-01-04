@@ -7,7 +7,12 @@ const pool = require('../modules/pool.js');
 
 //Gets all of the events ordered by date
 router.get('/',(req,res)=>{
-  let queryString = 'SELECT * FROM genre;';
+  let queryString = `
+    SELECT g.id, g.name, COUNT(m.genre_id) FROM movie m
+    RIGHT JOIN genre g ON g.id=m.genre_id
+    GROUP BY g.name, g.id
+    ORDER BY g.id;
+  `;
   pool.query(queryString).then(result=>{
     res.send(result.rows);
   }).catch(error=>{
