@@ -9,10 +9,6 @@ class ManageGenre extends Component {
     genre: ''
   }
 
-  componentDidMount() {
-    this.props.dispatch({type: 'GET_GENRE'})
-  }
-
   handleChange = (event,prop)=> {
     this.setState({
       [prop]: event.target.value
