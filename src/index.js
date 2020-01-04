@@ -4,9 +4,42 @@ import './index.css';
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+//Redux + Saga
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+import logger from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
+import {put,takeEvery} from 'redux-saga/effects';
+import axios from 'axios';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+//-----< SAGAS >-----\\
+function * rootSaga () {
+  yield takeEvery ('GET_GENRE', getGenre); 
+}
+
+function * getGenre (action) {
+  const response = yield axios.get('/genre');
+  yield put({type: 'SET_GENRE', payload: response.data});
+}
+
+
+//-----< REDUCERS >-----\\
+const genreReducer = (state=[],action)=> {
+  switch(action.type) {
+    case 'SET_GENRE': return action.payload;
+    default: return state;
+  }
+}
+
+//-----< CREATING THE STORE >-----\\
+const sagaMiddlware = createSagaMiddleware();
+const storeInstance = createStore (
+  combineReducers({
+    genreReducer
+  }),
+  applyMiddleware(sagaMiddlware, logger)
+)
+sagaMiddlware.run(rootSaga);
+
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));
+

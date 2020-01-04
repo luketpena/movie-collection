@@ -9,9 +9,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
-// app.use('/events', eventsRouter);
-// app.use('/producers', producersRouter);
-// app.use('/places',placesRouter);
+const genreRouter = require('./routers/genre.router');
+
+app.use('/genre', genreRouter);
+
 
 
 /** ---------- START SERVER ---------- **/
