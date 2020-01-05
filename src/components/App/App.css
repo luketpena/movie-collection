@@ -1,10 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
+
 header {
   background-color: steelblue;
   color: white;
+  text-align: center;
+  padding: 8px;
+  box-shadow: 0px -2px 16px 4px rgba(0,0,0,.5);
+  position:
+}
+
+header button {
+  width: 40%;
+  background-color: rgba(255,255,255,.25);
+  color: white;
+  border: none;
+  transition: all .2s;
+  outline: none;
+}
+
+header button:hover {
+  background-color: white;
+  color: steelblue;
+  cursor: pointer;
+}
+
+.nav-left {
+  border-radius: 8px 0 0 8px;
+}
+.nav-right {
+  border-radius: 0 8px 8px 0;
 }
 
 h1 {
   margin: 0;
+}
+
+h2 {
+  text-align: center;
 }
 
 h3 {
@@ -12,9 +44,78 @@ h3 {
   animation: title-wrap 5s linear 0s infinite normal;
 }
 
+h1, h2, h3, thead {
+  font-family: 'Bebas Neue', cursive;
+}
+
 @keyframes title-wrap {
   from {transform: translateX(100%);}
   to {transform: translateX(-250%);}
+}
+
+form {
+  box-shadow: 0px 4px 8px -2px rgba(0,0,0,.5);
+  max-width: 512px;
+  margin: 0 auto;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+form button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 8px;
+}
+
+.fullWidthInput {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+input {
+  border: 1px solid white;
+  outline: none;
+  background: #EEE;
+  border-radius: 8px;
+  padding-left: 8px;
+  box-sizing: border-box;
+  transition: all .2s;
+}
+
+input:focus {
+  border: 1px solid steelblue;
+}
+
+.inputRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.inputRowItem {
+  margin: 8px 0;
+  flex-grow: 1;
+}
+
+.in-runtime {
+  width: 100%;
+}
+
+form button {
+  border: 1px solid steelblue;
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: steelblue;
+  background-color: rgba(70, 130, 180, .1);
+  transition: all .2s;
+}
+
+form button:hover {
+  background-color: rgba(70, 130, 180, .8);
+  color: white;
+  padding: 8px 24px;
+  cursor: pointer;
 }
 
 .cardBox {
@@ -31,6 +132,7 @@ h3 {
   border-radius: 12px;
   overflow: hidden;
   white-space: nowrap;
+  position: relative;
 }
 
 .card img {
@@ -39,3 +141,65 @@ h3 {
   object-fit: cover; 
 }
 
+.card button {
+  position: absolute;
+  bottom: -1px;
+  left: -1%;
+  width: 102%;
+  height: 32px;
+  border: 1px solid brown;
+  color: brown;
+  background-color: rgba(165, 42, 42, .2);
+  transition: all .2s;
+}
+
+.card button:hover {
+  color: white;
+  background-color: brown;
+  cursor: pointer;
+}
+
+table {
+  padding: 16px;
+  width: 101%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-align: center;
+  transform: translateX(-1px);
+  table-layout: fixed;
+}
+
+thead {
+  background-color: grey;
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgb(241, 241, 241);
+}
+
+.tableBox {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px -2px rgba(0,0,0,.5);
+  width: 100%;
+  max-width: 512px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+table button {
+  color: brown;
+  border: 1px solid brown;
+  border-radius: 4px;
+  padding: 2px 8px;
+  background-color: rgba(165, 42, 42, .2);
+  transition: all .2s;
+}
+
+table button:hover {
+  color: white;
+  background-color: brown;
+  padding: 2px 12px;
+  cursor: pointer;
+}

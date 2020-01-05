@@ -44,11 +44,13 @@ function * getMovie (action) {
 function * addMovie (action) {
   yield axios.post('/movie',action.payload);
   yield put({type: 'GET_MOVIE'});
+  yield put({type: 'GET_GENRE'});
 }
 
 function * deleteMovie (action) {
   yield axios.delete('/movie/'+action.payload);
   yield put({type: 'GET_MOVIE'});
+  yield put({type: 'GET_GENRE'});
 }
 
 //-----< REDUCERS >-----\\

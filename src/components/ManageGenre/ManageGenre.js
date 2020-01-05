@@ -38,23 +38,26 @@ class ManageGenre extends Component {
       <div>
         <h2>Add Genre</h2>
         <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="Genre Name" value={this.state.genre} onChange={(event)=>this.handleChange(event,'genre')}/>
+          <input className="fullWidthInput" type="text" placeholder="Genre Name" value={this.state.genre} onChange={(event)=>this.handleChange(event,'genre')}/>
           <button>Submit</button>
         </form>
         <h2>Genres</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Total Movies</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.generateRows()}
-          </tbody>
-        </table>
+        <div className="tableBox">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Total Movies</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.generateRows()}
+            </tbody>
+          </table>
+        </div>
       </div>
+
     )
   }
 }

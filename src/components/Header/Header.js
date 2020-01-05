@@ -12,8 +12,8 @@ class Header extends Component {
       <header>
         <h1>Movie Database</h1>
         <div>
-          <button onClick={()=>(this.handleClick('/add'))}>Add Entry</button>
-          <button onClick={()=>(this.handleClick('/manage'))}>Manage Genres</button>
+          <button className="nav-left" onClick={()=>(this.handleClick('/add'))}>Add Entry</button>
+          <button className="nav-right" onClick={()=>(this.handleClick('/manage'))}>Manage Genres</button>
         </div>
       </header>
     )
