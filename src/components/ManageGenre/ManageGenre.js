@@ -29,7 +29,7 @@ class ManageGenre extends Component {
       this.props.dispatch({type: 'ADD_GENRE', payload: this.state.genre});
       this.setState({genre: ''});
     } else {
-      alert('Please enter a genre name.');
+      this.props.dispatch({type: 'SET_ALERT', payload: 'Please enter a genre name.'});
     }
   }
 

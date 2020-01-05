@@ -68,12 +68,21 @@ const movieReducer = (state=[],action)=> {
   }
 }
 
+const alertReducer = (state={text: ''},action)=> {
+  switch(action.type) {
+    case 'SET_ALERT': return {text: action.payload};
+    case 'CLEAR_ALERT': return {text: ''};
+    default: return state;
+  }
+}
+
 //-----< CREATING THE STORE >-----\\
 const sagaMiddlware = createSagaMiddleware();
 const storeInstance = createStore (
   combineReducers({
     genreReducer,
     movieReducer,
+    alertReducer,
   }),
   applyMiddleware(sagaMiddlware, logger)
 )

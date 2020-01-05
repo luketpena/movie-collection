@@ -33,7 +33,7 @@ class AddEntry extends Component {
         runtime: '',
       })
     } else {
-      alert('Please fill out the movie information then try again.');
+      this.props.dispatch({type: 'SET_ALERT', payload: 'Please fill out the movie information then try again.'});
     }
   }
 

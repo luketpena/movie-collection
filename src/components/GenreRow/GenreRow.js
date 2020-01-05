@@ -7,7 +7,7 @@ class GenreRow extends Component {
     if (this.props.genre.count==='0') {
       this.props.dispatch({type: 'DELETE_GENRE', payload: this.props.genre.id})
     } else {
-      alert('You cannot delete a genre with movies assigned to it. Remove those movies first then try again.')
+      this.props.dispatch({type: 'SET_ALERT', payload: 'You cannot delete a genre with movies assigned to it. Remove those movies first then try again.'})
     }
   }
 
