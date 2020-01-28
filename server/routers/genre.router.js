@@ -1,11 +1,10 @@
-// REQUIRES
+//-----< Requires >-----\\
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
 
-// ROUTES
-
-//Gets all of the events ordered by date
+//-----< Routes >-----\\
+//Gets all genres ordered by database ID
 router.get('/',(req,res)=>{
   let queryString = `
     SELECT g.id, g.name, COUNT(m.genre_id) FROM movie m
@@ -21,6 +20,7 @@ router.get('/',(req,res)=>{
   })
 })
 
+//Posts a new genre to the database
 router.post('/',(req,res)=>{
   const genre = req.body.newGenre;
   console.log('Incoming genre:', genre);
@@ -43,5 +43,5 @@ router.delete('/:id',(req,res)=>{
   })
 })
 
-// EXPORT THE ROUTES
+//-----< Export >-----\\
 module.exports = router;

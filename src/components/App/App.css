@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
 
+body {
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(189,255,233,1) 41%, rgba(16,216,253,1) 73%, rgba(0,152,237,1) 100%);
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
 .alertBkg {
   position: absolute;
   background-color: rgba(0,0,0,.5);
@@ -41,12 +48,11 @@ button {
 }
 
 header {
-  background-color: steelblue;
+  background-color: rgba(0,152,237,1);
   color: white;
   text-align: center;
   padding: 8px;
   box-shadow: 0px -2px 16px 4px rgba(0,0,0,.5);
-  position:
 }
 
 header button {
@@ -99,6 +105,7 @@ form {
   margin: 0 auto;
   padding: 8px;
   border-radius: 8px;
+  background-color: white;
 }
 
 form button {
@@ -161,6 +168,7 @@ form button:hover {
 .cardBox {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card {
@@ -173,6 +181,7 @@ form button:hover {
   overflow: hidden;
   white-space: nowrap;
   position: relative;
+  background-color: white;
 }
 
 .card img {
@@ -216,6 +225,9 @@ thead {
 
 tbody tr:nth-child(even) {
   background-color: rgb(241, 241, 241);
+}
+tbody tr:nth-child(odd) {
+  background-color: white;
 }
 
 .tableBox {

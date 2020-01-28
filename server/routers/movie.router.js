@@ -1,11 +1,11 @@
-// REQUIRES
+//-----< Requires >-----\\
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
 
-// ROUTES
+//-----< Routes >-----\\
 
-//Gets all of the events ordered by date
+//Gets all the movies and their genres ordered by the movie ID
 router.get('/',(req,res)=>{
   let queryString = `
     SELECT m.id, m.name, g.name AS genre, m.date, m.img_url, m.runtime FROM genre g
@@ -20,6 +20,7 @@ router.get('/',(req,res)=>{
   })
 });
 
+//Posts a new movie and its genre to the database
 router.post('/',(req,res)=>{
   let {name,genre,date,img_url,runtime} = req.body;
   genreNum = Number(genre);
@@ -35,6 +36,7 @@ router.post('/',(req,res)=>{
   })
 })
 
+//Removes a movie from the database
 router.delete('/:id',(req,res)=>{
   let queryString = 'DELETE FROM movie WHERE id=$1;';
   pool.query(queryString, [req.params.id]).then(result=>{
@@ -45,5 +47,5 @@ router.delete('/:id',(req,res)=>{
   })
 })
 
-// EXPORT THE ROUTES
+//-----< Export >-----\\
 module.exports = router;
